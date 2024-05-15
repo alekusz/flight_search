@@ -1,1 +1,4 @@
-# flight_search
+# Price factor analyzer
+Final model for the Data Science Project. The Price Factors Analyzer model is a tool designed to analyze and identify the factors that influence flight prices on the route from Copenhagen (CPH) to London (LGW) specifically on the 21st of June 2024. The Price Factors Analyzer does not aim to forecast exact prices. Instead, it focuses on providing insights into the various factors that affect flight prices on this route and date.
+
+The Price Factors Analyzer helps users understand the dynamics behind pricing fluctuations. With the insights gained from the Price Factors Analyzer, travelers can make informed decisions when selecting flights. Whether it's choosing the most cost-effective options, avoiding peak pricing periods, or optimizing travel itineraries, this model empowers users to make smarter choices when planning their journeys.
