@@ -164,3 +164,8 @@ data.dtypes
 data['Base_Price'] = data['Base_Price'].astype(float)
 
 data['numberOfBookableSeats'] = data['numberOfBookableSeats'].astype(float)
+
+data['id'] = data['id'].astype(float)
+data['nr_of_flights'] = data['nr_of_flights'].astype(float)
+data['Departure'] = data['Departure'].astype()
+data['Departure'] = pd.to_datetime(data['Departure'])
