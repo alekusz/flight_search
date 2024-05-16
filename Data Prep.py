@@ -142,19 +142,25 @@ print(data)
 data['Price'] = data['price.grandTotal']
 
 
+#Basic data cleaning 
 
+data.info
 
-# Send to SQL 
+#Look at missing data 
+data.isna().any()
+#no missing values, Fare_label does have a lot of '1' that dont have meaning 
 
-import sqlite3
+#Look at the Fare_Label more
+data["Fare_Label"].describe
 
-# Establish a connection to the SQLite database
-conn = sqlite3.connect(r'/Users/Blaer Runarsdottir/Flights.db') ##This one change with your own directory where you created the database 
+#See if we have any duplicate values 
+data[data["FlightID"].duplicated()]
 
-# Send the data to SQL
-data.to_sql('Flights(12/05)', conn, if_exists='replace', index=False)
+#Look at the datatypes
+data.dtypes
 
+#Change the datatypes 
 
-# Commit changes and close connection
-connection.commit()
-connection.close()
+data['Base_Price'] = data['Base_Price'].astype(float)
+
+data['numberOfBookableSeats'] = data['numberOfBookableSeats'].astype(float)
