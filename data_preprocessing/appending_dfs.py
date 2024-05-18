@@ -19,7 +19,7 @@ df3 = pd.read_csv('price.csv')
 df4 = pd.read_csv('travelprice.csv')
 
 # Append the dataframes
-df = pd.concat([df1, df2, df3, df4], ignore_index=True)
+df = pd.concat([df1, df2, df3, df4], axis = 1)
 
 # REMEMBER TO CHANGE DIRECTORY
 # Save the final DataFrame as a CSV file
