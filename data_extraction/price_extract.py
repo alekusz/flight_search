@@ -21,7 +21,7 @@ def extract_fields(json_data):
 # Read CSV file and process each row
 
 # Open flight_search csv to read in information 
-with open('flight_search.csv', mode='r') as csv_file: 
+with open('flight_nyc.csv', mode='r') as csv_file: 
     csv_reader = csv.DictReader(csv_file)
     
     # Give column names to extracted information (in order)
