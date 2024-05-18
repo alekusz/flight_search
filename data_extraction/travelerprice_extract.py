@@ -73,7 +73,7 @@ def extract_fields(json_data):
     return extracted_data, amenities_fields
 
 # Read CSV file and process each row
-with open('flight_search.csv', mode='r') as csv_file:
+with open('flight_nyc.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     
     # Pass through the data once to determine all unique amenities
