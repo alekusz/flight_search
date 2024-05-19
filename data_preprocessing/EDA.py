@@ -32,9 +32,12 @@ from tabulate import tabulate
 # Print the untransposed summary statistics table using tabulate
 print(tabulate(summary_statistics_numerical, headers='keys', tablefmt='grid'))
 
+# Transpose the summary statistics DataFrame for better readability
+summary_statistics_transposed = summary_statistics_non_numerical.describe().transpose()
+
 # Export the untransposed summary statistics DataFrame to an Excel file with a specific sheet name
 summary_statistics_numerical.to_excel('summary_statistics.xlsx', sheet_name='Summary Statistics', index=True)
-summary_statistics_non_numerical.to_excel('summary_statistics_cat.xlsx', sheet_name='Summary Statistics', index=True)
+summary_statistics_transposed.to_excel('summary_statistics_cat.xlsx', sheet_name='Summary Statistics', index=True)
 
 # Looking at our depending variable price -------------------------------------------------------------
 print(df['Grand Total Price'])
