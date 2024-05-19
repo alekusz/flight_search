@@ -25,12 +25,28 @@ print("Unique values:", unique_values)
 
 df = df.drop('Currency.1', axis=1)
 
+# Remove Airport origin (all should be from CPH)
+df = df.drop('Origin Airport', axis=1)
+
+# DUPLICATE COLUMNS
+
 # Total Price.1 -> these have the same as grand total, so we also delete this. 
 df = df.drop('Total Price.1', axis=1)
 
 # Base price.1 -> these this is duplicate column of Base price. 
 df = df.drop('Base Price.1', axis=1)
 
+# 1st layover
+df = df.drop('1st layover', axis=1)
+
+# 2nd layover
+df = df.drop('2nd layover', axis=1)
+
+# Branded Fares Lables
+df = df.drop('Branded Fares Lables', axis=1)
+
+# Origin airport
+df = df.drop('Origin airport', axis=1)
 
 # Flight departures -> get a date variable
 
