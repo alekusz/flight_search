@@ -12,6 +12,10 @@ df = df.drop(['TRAVEL_SERVICES_amenityProvider', 'TRAVEL_SERVICES_isChargeable',
 print(df)
 
 # Checking the columns: 
+
+# id -> these this is the primary key for SQL database, but it is not used in the analysis
+df = df.drop('id', axis=1)
+
 # Currency.1
 unique_values = df['Currency.1'].unique()
 
@@ -58,6 +62,14 @@ df['Third flight arrival'] = df['Third flight arrival'].apply(extract_time)
 # Rename column
 df.rename(columns={'Firt flight departure': 'First flight departure'}, inplace=True)
 df.rename(columns={'Firt flight arrival': 'First flight arrival'}, inplace=True)
+
+# Convert to datetime format
+df['First flight departure'] = pd.to_datetime(df['First flight departure'])
+df['Second flight departure'] = pd.to_datetime(df['Second flight departure'])
+df['Third flight departure'] = pd.to_datetime(df['Third flight departure'])
+df['First flight arrival'] = pd.to_datetime(df['First flight arrival'])
+df['Second flight arrival'] = pd.to_datetime(df['Second flight arrival'])
+df['Third flight arrival'] = pd.to_datetime(df['Third flight arrival'])
 
 print(df)
 
