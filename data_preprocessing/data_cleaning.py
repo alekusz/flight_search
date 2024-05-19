@@ -24,6 +24,9 @@ df = df.drop('Currency.1', axis=1)
 # Total Price.1 -> these have the same as grand total, so we also delete this. 
 df = df.drop('Total Price.1', axis=1)
 
+# Base price.1 -> these this is duplicate column of Base price. 
+df = df.drop('Base Price.1', axis=1)
+
 
 # Flight departures -> get a date variable
 
