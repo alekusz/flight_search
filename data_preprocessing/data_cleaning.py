@@ -24,6 +24,17 @@ df = df.drop('Currency.1', axis=1)
 # Total Price.1 -> these have the same as grand total, so we also delete this. 
 df = df.drop('Total Price.1', axis=1)
 
+
+# Flight departures -> get a date variable
+
+# Function to extract date from datetime string
+def extract_date(datetime_str):
+    if datetime_str:
+        return datetime_str.split('T')[0]
+    return ""
+
+df['Flight depature date'] = df['Firt flight departure'].apply(extract_date)
+
 # Flight departures -> turn into categorical variable
 
 # Function to extract time after 'T'
