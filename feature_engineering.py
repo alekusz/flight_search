@@ -108,6 +108,11 @@ flights['Log Grand Total Price'] = np.log(flights['Grand Total Price'])
 # Check the transformation
 print(flights[['Log Grand Total Price', 'Grand Total Price']].head())
 
+parent_directory = os.path.dirname(current_directory)
+print(parent_directory)
+
+os.chdir(parent_directory)
+os.chdir("Feature_engineering")
 
 # Convert data frame to csv file.
 flights.to_csv('engineering_data.csv', index=False)
