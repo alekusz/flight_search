@@ -7,6 +7,8 @@ from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
 
 
 flights = pd.read_csv('/Users/aleksandrakusz/Desktop/2nd BI/flight_search/Feature_engineering/final_data.csv')
@@ -97,3 +99,83 @@ print("Mean Squared Error:", mse)
 # Calculate root mean squared error
 rmse = np.sqrt(mse)
 print("Root Mean Squared Error:", rmse)
+
+#Linear regression 
+# Initialize the linear regression model
+lr_model = LinearRegression()
+
+# Train the model on the training data
+lr_model.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred_lr = lr_model.predict(X_test)
+
+# Calculate metrics
+mse_lr = mean_squared_error(y_test, y_pred_lr)
+r2_lr = r2_score(y_test, y_pred_lr)
+rmse_lr = np.sqrt(mse_lr)
+
+print("Linear Regression Mean Squared Error:", mse_lr)
+print("Linear Regression R^2 Score:", r2_lr)
+print("Linear Regression RMSE:", rmse_lr)
+
+# Extracting feature importance from linear regression coefficients
+feature_importance_lr = abs(lr_model.coef_)
+
+# Get the indices of features sorted by importance
+sorted_indices_lr = np.argsort(feature_importance_lr)[::-1]
+
+# Get the sorted feature names based on importance
+sorted_features_lr = [X.columns[i] for i in sorted_indices_lr]
+
+# Get the sorted feature importances
+sorted_importances_lr = feature_importance_lr[sorted_indices_lr]
+
+# Print feature importances
+for feature, importance in zip(sorted_features_lr, sorted_importances_lr):
+    print(f"{feature}: {importance}")
+
+# Visualize top 20 feature importances
+plt.figure(figsize=(10, 6))
+plt.bar(range(20), sorted_importances_lr[:20], tick_label=sorted_features_lr[:20])
+plt.xlabel('Features')
+plt.ylabel('Importance')
+plt.title('Feature Importance (Linear Regression)')
+plt.xticks(rotation=90)
+plt.show()
+
+#Visualizing #2
+# Extracting feature importance from linear regression coefficients
+feature_importance_lr = lr_model.coef_
+
+# Get the indices of features sorted by importance
+sorted_indices_lr = np.argsort(np.abs(feature_importance_lr))[::-1]
+
+# Get the sorted feature names based on importance
+sorted_features_lr = [X.columns[i] for i in sorted_indices_lr]
+
+# Get the sorted feature importances
+sorted_importances_lr = feature_importance_lr[sorted_indices_lr]
+
+# Print feature importances with signs
+for feature, importance in zip(sorted_features_lr, sorted_importances_lr):
+    print(f"{feature}: {importance}")
+
+# Visualize top 20 feature importances with signs
+plt.figure(figsize=(10, 6))
+plt.bar(range(20), sorted_importances_lr[:20], tick_label=sorted_features_lr[:20])
+plt.xlabel('Features')
+plt.ylabel('Importance')
+plt.title('Feature Importance (Linear Regression)')
+plt.xticks(rotation=90)
+plt.show()
+
+# Visualize top 20 feature importances with signs
+plt.figure(figsize=(10, 8))
+plt.barh(range(20), sorted_importances_lr[:20], tick_label=sorted_features_lr[:20])
+plt.xlabel('Importance')
+plt.ylabel('Features')
+plt.title('Top 20 Feature Importance (Linear Regression)')
+plt.gca().invert_yaxis()  # Invert y-axis to have the highest importance at the top
+plt.show()
+
