@@ -172,7 +172,7 @@ print(flights['Meal Option'])
 columns_to_remove = ['MEAL_isChargeable','MEAL_amenityProvider']
 flights = flights.drop(columns=columns_to_remove)
 
-flights.drop('MEAL_description', axis=1, inplace=True)
+flights.drop('', axis=1, inplace=True)
 
 
 
