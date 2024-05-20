@@ -80,7 +80,7 @@ print(flights)
 # Imputing missing values with "No layover"
 columns_to_fill = ['Airport layover 1', 'Airport layover 2']
 for column in columns_to_fill:
-    flights[column] = flights[column].replace('', 'No layover')
+    flights[column] = flights[column].replace('', np.nan).fillna('No layover')
 
 columns_to_fill_2 = ['Flight duration 1', 'Flight duration 2']
 for column in columns_to_fill:
