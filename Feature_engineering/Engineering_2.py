@@ -3,6 +3,7 @@ import missingno as msno
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime 
+from sklearn.preprocessing import StandardScaler
 import os
 flights = pd.read_csv('Feature_engineering/engineering_data.csv')
 print(flights)
@@ -22,5 +23,12 @@ flights = flights.drop(['Base Price'], axis=1)
 num_rows, num_columns = flights.shape
 print("Number of rows:", num_rows)
 print("Number of columns:", num_columns)
+#Removing the Grand Total Price 
+flights = flights.drop(['Grand Total Price'], axis=1)
+
+# Assuming 'flights' is your DataFrame
+flights['Duration'] = np.log(flights['Duration'])
+#Drop the price as we have the log price now 
+
 
 flights.to_csv('final_data.csv', index=False)
