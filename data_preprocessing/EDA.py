@@ -137,8 +137,30 @@ near_zero_var_features = variances[variances < threshold].index.tolist()
 
 print("Features with near-zero variance:")
 print(near_zero_var_features)
-    # there does not seem to be any problems with near zero variance. All numeric variables seem to be ok. 
+    # there does not seem to be any problems with near zero variance. All numeric variables seem to be ok.
 
+# Correlation matrix ------------------------------------------------------
+# Drop non-numeric columns
+numeric_flights = df.select_dtypes(include=['float64', 'int64'])
+
+# Calculate correlation matrix
+correlation_matrix = numeric_flights.corr()
+
+import seaborn as sns
+# Extract correlation coefficients for 'Grand Total Price' column
+correlation_with_price = correlation_matrix['Grand Total Price']
+
+# Plot correlation of variables with 'Grand Total Price'
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_with_price.to_frame(), annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+plt.title('Correlation of Variables with Grand Total Price')
+plt.show()
+
+# Plot correlation matrix heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+plt.title('Correlation Matrix')
+plt.show()
 # Factor Variables ----------------------------------------------------------------------------------------------
 
 #_________________
@@ -156,10 +178,4 @@ for column in non_numeric_columns:
     plt.show()
 
 # There are many things to unpack here, more in the analysis. 
-
-
-
-
-
-
 
