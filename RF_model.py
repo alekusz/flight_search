@@ -16,7 +16,7 @@ os.chdir("Feature_engineering")
 df = pd.read_csv('final_data.csv')
 
 # Creating the matrix
-X = df.drop(columns=['Log Grand Total Price', 'Grand Total Price'])
+X = df.drop(columns=['Log Grand Total Price'])
 y = df['Log Grand Total Price']
 
 # One-Hot Encode the categorical columns
@@ -56,7 +56,7 @@ feature_importances = feature_importances.sort_values(by='Importance', ascending
 
 # Plot the feature importances
 plt.figure(figsize=(10, 6))
-sns.barplot(x='Importance', y='Feature', data=feature_importances.head(10))  # Displaying top 10 features
+sns.barplot(x='Importance', y='Feature', data=feature_importances.head(20))  # Displaying top 20 features
 plt.title('Feature Importances')
 plt.show()
 
