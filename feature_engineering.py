@@ -3,6 +3,14 @@ import missingno as msno
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime 
+import os
+
+current_directory = os.getcwd()
+print(current_directory)
+
+# Change the current working directory
+os.chdir("data_preprocessing")
+
 flights = pd.read_csv('cleaned_data.csv')
 print(flights)
 #Change the arrivals and departure dates to morning/afternoon/evening 
@@ -62,10 +70,10 @@ def classify_day(day_of_week):
         return 'Weekday'
 
 # Apply the function to create Day of Departure
-df['Day Type Departure'] = df['Day of Week Departure'].apply(classify_day)
+flights['Day Type Departure'] = flights['Day of Week Departure'].apply(classify_day)
 
 # check if new row was made
-print(df)
+print(flights)
 
 #Imputing null values as mentioned in the EDA with layovers 
 
