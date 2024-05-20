@@ -1,5 +1,12 @@
 import pandas as pd
 import csv
+import os
+
+current_directory = os.getcwd()
+print(current_directory)
+
+# Change the current working directory
+os.chdir("data_preprocessing")
 
 # Read the appended CSV file into a DataFrame
 df = pd.read_csv('modified_flights_data.csv')
@@ -54,9 +61,11 @@ df = df.drop('Origin airport', axis=1)
 def extract_date(datetime_str):
     if datetime_str:
         return datetime_str.split('T')[0]
-    return ""
+    return ''
 
 df['Flight depature date'] = df['Firt flight departure'].apply(extract_date)
+
+print(df['Flight depature date'])
 
 # Flight departures extracting time of departure
 
@@ -78,16 +87,6 @@ df['Third flight arrival'] = df['Third flight arrival'].apply(extract_time)
 # Rename column
 df.rename(columns={'Firt flight departure': 'First flight departure'}, inplace=True)
 df.rename(columns={'Firt flight arrival': 'First flight arrival'}, inplace=True)
-
-# Convert to datetime format
-df['First flight departure'] = pd.to_datetime(df['First flight departure'])
-df['Second flight departure'] = pd.to_datetime(df['Second flight departure'])
-df['Third flight departure'] = pd.to_datetime(df['Third flight departure'])
-df['First flight arrival'] = pd.to_datetime(df['First flight arrival'])
-df['Second flight arrival'] = pd.to_datetime(df['Second flight arrival'])
-df['Third flight arrival'] = pd.to_datetime(df['Third flight arrival'])
-
-print(df)
 
 # Define the function to convert ISO durations to hours
 def iso_to_hours(duration_str):
