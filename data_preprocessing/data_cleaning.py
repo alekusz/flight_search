@@ -143,7 +143,6 @@ print(df['Flight duration 1'])
 
 
 # Define a function to convert ISO durations to hours
-# Define a function to convert ISO durations to hours
 def iso_to_hours(duration_str):
     if isinstance(duration_str, str) and duration_str.strip():  # Check if the string is not empty or contains only whitespace
         duration_str = duration_str.replace('PT', '')  # Remove 'PT' from the string
@@ -200,8 +199,16 @@ print(df['Flight duration 3'])
 
 print(df)
 
+#Remove lastTicketingDateTime as this is a duplicate 
+df = df.drop('lastTicketingDateTime', axis=1)
+#Remove Airline as this is a duplicate 
+df = df.drop('Airline', axis=1)
+#Remove branded fares as this is a duplicate 
+df = df.drop('Branded Fares', axis=1)
+
 # Convert data frame to csv file.
 df.to_csv('cleaned_data.csv', index=False)
+
 
 
 
