@@ -205,6 +205,8 @@ df = df.drop('Airline', axis=1)
 #Remove branded fares as this is a duplicate 
 df = df.drop('Branded Fares', axis=1)
 
+print(df['First flight departure'])
+
 # Convert data frame to csv file.
 df.to_csv('cleaned_data.csv', index=False)
 
