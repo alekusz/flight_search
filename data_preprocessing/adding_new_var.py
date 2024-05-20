@@ -1,6 +1,13 @@
 import pandas as pd
 import csv
 from datetime import datetime
+import os
+
+current_directory = os.getcwd()
+print(current_directory)
+
+# Change the current working directory
+os.chdir("data_preprocessing")
 
 # Read the appended CSV file into a DataFrame
 df = pd.read_csv('cleaned_data.csv')
@@ -17,7 +24,7 @@ def categorize_time(time_str):
                 return "Afternoon"
             else:
                 return "Evening"
-
+            
 df['Departure Time'] = df['First flight departure'].apply(categorize_time)
 
 # Function to categorize arrival time based on the the first non-empty column (there are 3 arrival time columns for layovers)
