@@ -1,5 +1,12 @@
 import pandas as pd
 import csv
+import os
+
+current_directory = os.getcwd()
+print(current_directory)
+
+# Change the current working directory
+os.chdir("data_preprocessing")
 
 # Read the appended CSV file into a DataFrame
 df = pd.read_csv('cleaned_data.csv')
