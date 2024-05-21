@@ -29,6 +29,7 @@ flights = flights.drop(['Grand Total Price'], axis=1)
 # Assuming 'flights' is your DataFrame
 flights['Duration'] = np.log(flights['Duration'])
 #Drop the price as we have the log price now 
-
+#Drop the departure date as we have the day of a week variable now 
+flights = flights.drop(['Flight depature date'], axis=1)
 
 flights.to_csv('final_data.csv', index=False)
