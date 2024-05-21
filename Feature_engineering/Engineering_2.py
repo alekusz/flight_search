@@ -14,7 +14,10 @@ print(flights.isnull().sum())
 #Remove lastTicketingDate
 #Remove the meal option column -> non information 
 #Remove baggage is charable --> from EDA results 
-#Remove row where ET is 
+
+# Remove rows where the 'Airline' column is 'ET'
+flights = flights[flights['validatingAirlineCodes'] != 'ET']
+
 flights = flights.drop(['lastTicketingDate','BAGGAGE_isChargeable','BAGGAGE_description','Meal Option'], axis=1)
 #Remove rows where Branded fare Lables is missing 
 flights.dropna(subset=['Branded Fare Labels'], inplace=True)
@@ -32,4 +35,5 @@ flights['Duration'] = np.log(flights['Duration'])
 #Drop the departure date as we have the day of a week variable now 
 flights = flights.drop(['Flight depature date'], axis=1)
 
-flights.to_csv('final_data.csv', index=False)
+
+flights.to_csv('final_data.csv', index=False) 
